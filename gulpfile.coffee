@@ -5,12 +5,13 @@ browserify = require 'gulp-browserify'
 
 
 path = {
-  scripts: ['lib/coffee/**/*.coffee']
+  scripts: [
+    'lib/js/**/*.js'
+  ]
 }
 
-gulp.task 'compile-coffee', () ->
+gulp.task 'compile-js', () ->
   gulp.src path.scripts
-  .pipe coffee()
   .pipe gulp.dest('dest/js')
 
 gulp.task 'test', () ->
@@ -19,7 +20,8 @@ gulp.task 'test', () ->
 
 
 gulp.task 'watch', () ->
-  gulp.watch path.scripts, ['compile-coffee', 'test']
+  gulp.watch path.scripts, ['compile-js', 'test']
 
 
-gulp.task('default', ['watch', 'compile-coffee', 'test']);
+gulp.task 'default', ['watch', 'compile-js', 'test'];
+
